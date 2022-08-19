@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/explab")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://frontendmariu-2732f.web.app")
 public class CExperiencia {
 
     @Autowired
@@ -43,7 +43,7 @@ public class CExperiencia {
         return new ResponseEntity(experiencia, HttpStatus.OK);
     }
     //Crear una nueva experiencia
-    @PreAuthorize("hasRole('ADMIN')")
+    
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody DtoExperiencia dtoexp){      
         if(StringUtils.isBlank(dtoexp.getNombreExp()))
@@ -57,7 +57,7 @@ public class CExperiencia {
         return new ResponseEntity(new Mensaje("Experiencia agregada"), HttpStatus.OK);
     }
     
-    @PreAuthorize("hasRole('ADMIN')")
+    
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody DtoExperiencia dtoexp){
         //Verifica si existe el Id
@@ -83,7 +83,7 @@ public class CExperiencia {
              
     }    
     
-    @PreAuthorize("hasRole('ADMIN')")
+    
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") int id) {
         if (!sExperiencia.existsById(id)) {
